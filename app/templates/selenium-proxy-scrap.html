@@ -1,0 +1,30 @@
+{% extends 'includes/layout.html' %}
+
+{% block body %}
+<main class="container">
+  <div class="bg-light p-5 rounded mt-5">
+    <h1>Selenium + Proxy Scrap</h1>
+    <form action="/scrap/launch" method="post">
+      <div class="form-group">
+        <label for="selogerUrlToScrap">URL Seloger</label>
+        <div class="d-flex">
+            <input type="text" name="inputUrlSeLoger" class="form-control" id="selogerUrlToScrap" placeholder="Enter url">
+            <button type="submit" class="btn btn-primary">Launch</button>
+        </div>
+      </div>
+    </form>
+    <div class="row">
+      <div class="col">
+        <p class="lead">PROXY : {{proxy}}</p>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <pre>
+                {{result}}
+            </pre>
+        </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

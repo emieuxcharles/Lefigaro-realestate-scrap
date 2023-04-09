@@ -1,0 +1,48 @@
+{% extends 'includes/layout.html' %}
+
+{% block body %}
+<main class="container">
+  <div class="bg-light p-5 rounded mt-5">
+    <h1>Simple Scrap</h1>
+    <form action="/simple-scrap/launch" method="post">
+        <div class="form-group">
+          <label for="simpleUrlToScrap">URL immobilier.lefigaro.fr</label>
+          <label for="simpleUrlToScrap">https://immobilier.lefigaro.fr/annonces/immobilier-vente-parking-france.html</label>
+          
+          <div>
+            <input type="radio" id="type-rent" name="realestate_type" value="rent">
+            <label for="type-rent">Rent</label>
+            <input type="radio" id="type-buy" name="realestate_type" value="buy">
+            <label for="type-buy">Buy</label>
+          </div>
+
+          <div class="d-flex">
+              <input type="text" name="inputUrlSimple" class="form-control" id="simpleUrlToScrap" placeholder="Enter url">
+              <button type="submit" class="btn btn-primary">Launch</button>
+          </div>
+        </div>
+    </form>
+    <p>Realestates = {{ realestates_number }} </p>
+    {% for realestate in realestates %}
+        <div>
+          <hr>
+          <p>ID: {{realestate.announce_id}}</p>
+          <p>Name: {{realestate.name}}</p>
+          <p>Price: {{realestate.price}}</p>
+          <p>Link: <a href="{{realestate.link}}">{{realestate.link}}</a></p>
+          <p>m2: {{realestate.m2}}</p>
+          <p>Postal Code: {{realestate.postal_code}}</p>
+          <p>Address: {{realestate.address}}</p>
+          <p>Type: {{realestate.type}}</p>
+          <hr>
+        </div>
+    {% endfor %}
+
+      <!-- <div class="row">
+        <pre>
+            {{realestates}}
+        </pre>
+      </div> -->
+  </div>
+</main>
+{% endblock %}

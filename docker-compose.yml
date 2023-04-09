@@ -1,0 +1,25 @@
+version: '3.8'
+
+networks:
+  web:
+    driver: bridge
+services:
+  chrome:
+    image: selenium/standalone-chrome:latest
+    hostname: chrome
+    networks:
+      - web
+    ports:
+      - "4444:4444"
+    privileged: true
+    shm_size: 2g
+  framework:
+    build: .
+    networks:
+      - web
+    volumes:
+      - ./app:/code
+    ports:
+      - "9598:5000"
+    depends_on: 
+      - chrome
